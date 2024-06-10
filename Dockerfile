@@ -1,3 +1,3 @@
 FROM local.harbor.com/library/busybox
-ADD dockerfile1 /
+ADD . /
 CMD ["sh"]
