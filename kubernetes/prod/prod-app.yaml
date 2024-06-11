@@ -18,7 +18,7 @@ spec:
     matchLabels:
       app: v1
   template:
-    medata:
+    metadata:
       name: flask-app
       labels:
         app: v1
@@ -52,6 +52,6 @@ spec:
     app: v1
   ports:
   - name: web
-    tagetPort: 8080
+    targetPort: 8080
     port: 8080
     protocol: "TCP"
