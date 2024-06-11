@@ -4,6 +4,7 @@ kind: Namespace
 metadata:
   name: dev
 
+
 ---
 apiVersion: apps/v1
 kind: Deployment
