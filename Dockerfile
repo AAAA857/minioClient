@@ -1,5 +1,8 @@
-FROM local.harbor.com/library/python-flask-docker
+FROM local.harbor.com/library/python:3.7
 RUN mkdir /data
-ADD . /data
+ADD web /data
+
+
 RUN chmod -R 777 /data
-CMD ["./data/web.py"]
+WORKDIR /data/web
+CMD ["python web.py"]
