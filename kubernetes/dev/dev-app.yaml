@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb
+  namespace: dev
+  labels:
+    app: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: v1
+  template:
+    medata:
+      name: flask-app
+      labels:
+        app: v1
+    spec:
+      containers:
+      - name: flask-app-server
+        image: local.harbor.com/library/mytest:VERSION
+        resources:
+          requests:
+            cpu: 0.5
+            memory: 500Mi
+          limits:
+            cpu: 1
+            memory: 1024Mi
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - name: web
+          protocol: "TCP"
+          containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mytest
+  namespace: dev
+  labels:
+    app: v1
+spec:
+  type: ClusterIP
+  selector:
+    app: v1
+  ports:
+  - name: web
+    tagetPort: 8080
+    port: 8080
+    protocol: "TCP"
